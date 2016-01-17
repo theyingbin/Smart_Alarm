@@ -1,5 +1,6 @@
 package com.example.home.smartalarm;
 
+import android.app.AlarmManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,10 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Switch;
 import android.widget.Button;
+import android.widget.TextClock;
+import android.provider.AlarmClock;
+import org.w3c.dom.Text;
+
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button button = (Button) findViewById(R.id.setAlarm);
-        button.setOnClickListener(new View.OnClickListener() {
+        TextClock alarm = (TextClock) findViewById(R.id.clock);
+
+        alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), AlarmClock.class);
@@ -29,6 +35,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button create = (Button) findViewById(R.id.creator);
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), AlarmClock.class);
+                startActivity(i);
+            }
+        });
+
+        Switch onSwitch = (Switch) findViewById(R.id.switch1);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    AlarmClock ac = new AlarmClock();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
