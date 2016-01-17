@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TextClock alarm = (TextClock) findViewById(R.id.clock);
-
         alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,24 +38,16 @@ public class MainActivity extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), AlarmClock.class);
+                Intent i = new Intent(getApplicationContext(), com.example.home.smartalarm.AlarmClock.class);
                 startActivity(i);
             }
         });
 
         Switch onSwitch = (Switch) findViewById(R.id.switch1);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
-    AlarmClock ac = new AlarmClock();
+    //AlarmClock ac = new AlarmClock();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
