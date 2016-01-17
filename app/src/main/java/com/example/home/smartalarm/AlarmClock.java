@@ -16,9 +16,9 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 
-public class AlarmClock extends MainActivity {
+public class AlarmClock extends AppCompatActivity {
 
-    private TimePicker timePicker;
+    private TimePicker tP;
     private AlarmClock alarm;
 
     @Override
@@ -26,43 +26,47 @@ public class AlarmClock extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm_clock);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tP = (TimePicker) findViewById(R.id.timePicker);
         setSupportActionBar(toolbar);
 
-        final Button setTime = (Button) findViewById(R.id.setTime);
+        Button setTime = (Button) findViewById(R.id.setTime);
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int hour = tP.getCurrentHour();
+                int min = tP.getCurrentMinute();
 
-                TimePickerDialog.OnTimeSetListener timeSetListerner = new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                String am_pm = "";
-                                int hr = timePicker.getHour();
-                                int mn = timePicker.getMinute();
+                String displayTime = "Time: " + hour + ":" + min;
+                TextView txtView = (TextView) findViewById(R.id.txtView);
+                txtView.setText(displayTime);
+            }
 
-//                                Calendar datetime = Calendar.getInstance();
-//                                datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-//                                datetime.set(Calendar.MINUTE, minute);
+        });
+
+//        TimePickerDialog.OnTimeSetListener timeSetListerner = new TimePickerDialog.OnTimeSetListener() {
+//            @Override
+//            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                String am_pm = "";
 //
-//                                if (datetime.get(Calendar.AM_PM) == Calendar.AM)
-//                                    am_pm = "AM";
-//                                else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
-//                                    am_pm = "PM";
+//                Calendar datetime = Calendar.getInstance();
+//                datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+//                datetime.set(Calendar.MINUTE, minute);
 //
-//                                String displayTime = (datetime.get(Calendar.HOUR) == 0) ? "12" : datetime.get(Calendar.HOUR) + "";
-                                String displayTime = hr + "" + mn;
-
-                                TextView txtView = (TextView)findViewById(R.id.txtView);
-                                txtView.setText(displayTime);
-
-//                                public void onClick(View v) {
+//                if (datetime.get(Calendar.AM_PM) == Calendar.AM)
+//                    am_pm = "AM";
+//                else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
+//                    am_pm = "PM";
+//
+////              String displayTime = (datetime.get(Calendar.HOUR) == 0) ? "12" : datetime.get(Calendar.HOUR) + "";
+//                String displayThis = "Time: " + hourOfDay + "" + minute;
+//
+//                TextView txtView = (TextView) findViewById(R.id.txtView);
+//                txtView.setText(displayThis);
+//
+//                   public void onClick(View v) {
 //                                    txtView.setText(displayTime);
 //                                }
-                            }
-                        };
-
-
-            }
-        });
+//                    }
+//                };
     }
 }
